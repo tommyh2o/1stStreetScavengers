@@ -4,7 +4,6 @@ import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
 import './ProductListing.css';
 
-// This would come from your data source or API in a real app
 import { products } from '../../data/products';
 
 const ProductListing = () => {
