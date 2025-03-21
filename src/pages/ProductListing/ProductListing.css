@@ -1,0 +1,38 @@
+/* src/pages/ProductListing/ProductListing.css */
+.product-listing-page {
+    padding: 20px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .page-title {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .product-listing-content {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .product-listing-main {
+    flex: 1;
+  }
+  
+  .product-count {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .product-listing-content {
+      flex-direction: column;
+    }
+  }
