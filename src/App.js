@@ -5,25 +5,29 @@ import Home from "./pages/Home/Home";
 import ProductListing from "./pages/ProductListing/ProductListing";
 import Contact from "./pages/Contact/Contact";
 import CartContext from "./context/CartContext";
+import Cart from "./components/Cart/Cart";
+import CartButton from "./components/CartButton/CartButton";
 import "./App.css";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Add item to cart
+  // Toggle cart visibility
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  // Add item to cart - modified to limit to one per item
   const addToCart = (product) => {
     // Check if the item is already in the cart
     const existingItem = cartItems.find((item) => item.id === product.id);
 
     if (existingItem) {
-      // If item exists, increase quantity
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
+      // For thrifted items, we often only have one of each item
+      // so we'll show an alert instead of increasing quantity
+      alert("This item is already in your cart. Each thrifted item is unique and limited to one per customer.");
+      return;
     } else {
       // If item doesn't exist, add it with quantity 1
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
@@ -35,10 +39,16 @@ function App() {
     setCartItems(cartItems.filter((item) => item.id !== productId));
   };
 
-  // Update item quantity
+  // Update item quantity - modified to respect the limit
   const updateQuantity = (productId, newQuantity) => {
     if (newQuantity <= 0) {
       removeFromCart(productId);
+      return;
+    }
+
+    // Enforce maximum quantity of 1 for thrifted items
+    if (newQuantity > 1) {
+      alert("Each thrifted item is unique and limited to one per customer.");
       return;
     }
 
@@ -79,10 +89,7 @@ function App() {
                 </ul>
               </nav>
               <div className="header-actions">
-                <button className="cart-btn">
-                  <span className="cart-icon">🛒</span>
-                  <span className="cart-count">{cartCount}</span>
-                </button>
+                <CartButton toggleCart={toggleCart} cartCount={cartCount} />
               </div>
             </div>
           </header>
@@ -94,6 +101,9 @@ function App() {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>
+
+          {/* Cart Component */}
+          <Cart isOpen={isCartOpen} toggleCart={toggleCart} />
 
           <footer className="main-footer">
             <div className="container">

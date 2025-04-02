@@ -17,6 +17,16 @@ const FilterSidebar = ({ filters, onFilterChange }) => {
     onFilterChange({ [name]: parseFloat(value) });
   };
 
+  const handleClearFilters = () => {
+    // Reset all filters to default values
+    onFilterChange({
+      size: 'All',
+      category: 'All',
+      minPrice: 0,
+      maxPrice: 1000 // Set this to whatever your default max price should be
+    });
+  };
+
   return (
     <div className="filter-sidebar">
       <div className="filter-section">
@@ -73,7 +83,7 @@ const FilterSidebar = ({ filters, onFilterChange }) => {
           </div>
         </div>
         
-        <button className="clear-filters">Clear All Filters</button>
+        <button className="clear-filters" onClick={handleClearFilters}>Clear All Filters</button>
       </div>
     </div>
   );
