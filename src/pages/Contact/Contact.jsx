@@ -21,16 +21,6 @@ const Contact = () => {
     });
   };
 
-  const mapContainerStyle = {
-    width: "100%",
-    height: "400px",
-  };
-
-  const center = {
-    lat: 30.2672, // Replace with your location's latitude
-    lng: -97.7431, // Replace with your location's longitude
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you would typically handle the form submission
@@ -104,25 +94,11 @@ const Contact = () => {
               <h3>Follow Us</h3>
               <div className="social-links">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/1ststreetscavengers/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Instagram
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
                 </a>
               </div>
             </div>
